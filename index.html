@@ -48,14 +48,19 @@
                 success: function(xml) {
                    //find all book tags, loop them and append to table body
                     $(xml).find('LOCATION').each(function() {
-
+                          if ($(this).find('TYPE').text()=='0'){
+							  $type = 'Почтовый автомат';
+						  }
+						  else if ($(this).find('TYPE').text()=='1'){
+							   $type = 'Почтовое отделение';
+						  }
                         // Append new data to the tbody element.
                         $('#tableBody').append(
                             '<tr>' +
                                 '<td>' +
                                     $(this).find('NAME').text() + '</td> ' +
                                 '<td>' +
-                                    $(this).find('TYPE').text() + '</td> ' +
+                                   $type + '</td> ' +
                                 '<td>' +
                                 $(this).find('A0_NAME').text() + ', ' +
                                 $(this).find('A1_NAME').text() + ', ' +
